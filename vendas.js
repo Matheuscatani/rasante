@@ -9,7 +9,8 @@
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
   if (CHECKOUT.anual) $("#comprar-anual").href = CHECKOUT.anual;
-  if (CHECKOUT.vitalicio) { $("#comprar-vitalicio").href = CHECKOUT.vitalicio; $("#comprar-final").href = CHECKOUT.vitalicio; }
+  if (CHECKOUT.vitalicio) $("#comprar-vitalicio").href = CHECKOUT.vitalicio;
+  /* o preço só aparece nos planos, no fim da página: a faixa "Assinar" leva até eles */
 
   const D = window.RASANTE;
   if (!D) return;
@@ -59,6 +60,12 @@
   const volta = nomes.map((n) => `<span>${esc(n)}</span>`).join("");
   $("#trilho").innerHTML = volta + volta;
   $("#faixa-nota").textContent = `Os ${nomes.length} destinos que a equipe confere saindo de ${origem}, de ${nomes[0]} a ${nomes[nomes.length - 1]}, todos os dias.`;
+
+  /* ---------- o maior desconto da última coleta, no painel de números ---------- */
+  if (ofertas[0]) {
+    $("#placar-maior").textContent = "−" + Math.round(ofertas[0].desconto * 100) + "%";
+    $("#placar-maior-nome").textContent = `Maior desconto agora (${ofertas[0].cidade})`;
+  }
 
   /* ---------- a conta do plano ---------- */
   const top = ofertas[0];
