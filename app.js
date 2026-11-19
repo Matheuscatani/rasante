@@ -10,7 +10,7 @@
   const semAcento = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   /* volta = true: do destino para Goiânia */
-  const link = (d, data, volta) => `https://www.google.com/travel/flights?q=${encodeURIComponent(volta ? `Flights to ${D.origem.iata} from ${d.busca || d.iata} on ${data} oneway` : `Flights to ${d.busca || d.iata} from ${D.origem.iata} on ${data} oneway`)}&curr=BRL&hl=pt-BR&gl=BR`;
+  const link = (d, data, volta) => `https://www.google.com/travel/flights?q=${encodeURIComponent(volta ? `Flights to ${D.origem.iata} from ${d.buscaVolta || d.busca || d.iata} on ${data} oneway` : `Flights to ${d.busca || d.iata} from ${D.origem.iata} on ${data} oneway`)}&curr=BRL&hl=pt-BR&gl=BR`;
   const foto = (iata) => `<img src="fotos/${iata}.jpg" alt="" loading="lazy" onerror="this.remove()">`;
 
   if (!D) { $("#promos").innerHTML = `<p class="vazio">A primeira coleta ainda não rodou.</p>`; return; }
