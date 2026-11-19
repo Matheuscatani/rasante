@@ -75,6 +75,18 @@ svg { display: block; }
 .campo span { font-size: .75rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
 .campo input, .campo select { border: 0; padding: 2px 0; background: transparent; font-weight: 600; font-size: 1rem; outline: none; min-width: 0; width: 100%; }
 .busca .btn { min-height: 56px; }
+/* só ida ou ida e volta, e os dias de viagem */
+.modo { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
+.modo[hidden], .modo-dias[hidden], .cal-par[hidden] { display: none; }
+.modo-tipo { display: inline-flex; padding: 4px; border-radius: 999px; background: var(--sky-soft); }
+.modo-tipo button { border: 0; background: none; padding: 10px 20px; border-radius: 999px; font: inherit; font-weight: 700; color: var(--sky); cursor: pointer; }
+.modo-tipo button[aria-pressed="true"] { background: var(--sky); color: #fff; }
+.modo-dias { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.modo-dias > span { font-size: .75rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-right: 4px; }
+.modo-dias button { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 6px 14px; font: inherit; font-weight: 700; font-size: .9rem; color: var(--ink); cursor: pointer; line-height: 1.2; text-align: left; }
+.modo-dias button small { display: block; font-size: .7rem; font-weight: 600; color: var(--muted); }
+.modo-dias button[aria-pressed="true"] { background: var(--sun); border-color: var(--sun); color: #fff; }
+.modo-dias button[aria-pressed="true"] small { color: rgba(255, 255, 255, .85); }
 main { padding-top: 70px; }
 
 /* ---------- blocos ---------- */
@@ -192,11 +204,24 @@ main { padding-top: 70px; }
 .dia.vazio-d { background: transparent; cursor: default; color: #b9c3d1; }
 .dia.vazio-d:hover { transform: none; }
 .cal-nota { color: var(--muted); font-size: .85rem; margin-top: 14px; }
+.dia.escolhido { outline: 3px solid var(--sun); outline-offset: 1px; }
+.cal-par { margin-top: 18px; display: grid; gap: 8px; }
+.par-tit { font-weight: 800; margin-top: 8px; }
+.par-linha { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; }
+.par-linha > div { display: grid; min-width: 0; }
+.par-linha small { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.par-linha b { font-size: 1.05rem; }
+.par-linha b::first-letter { text-transform: uppercase; }
+.par-linha span { font-size: .88rem; color: var(--muted); }
+.par-linha strong { color: var(--ink); }
+.par-linha .btn { flex: none; min-height: 44px; padding: 0 16px; font-size: .9rem; }
+.par-ida { background: var(--sky-soft); border-color: transparent; }
+.par-menor { border-color: var(--green); }
 
 @media (max-width: 960px) {
   .promos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .busca { grid-template-columns: 1fr 1fr; transform: translateY(40%); }
-  .busca .campo:first-child, .busca .btn { grid-column: 1 / -1; }
+  .busca label.campo:first-of-type, .busca .btn { grid-column: 1 / -1; }
   main { padding-top: 130px; }
 }
 @media (max-width: 640px) {
@@ -271,3 +296,7 @@ body.trancado > :not(.entrada):not(script):not(dialog) { display: none !importan
   .saida { padding: 7px 10px; font-size: .8rem; gap: 4px; min-width: 0; }
   .saida svg { width: 13px; height: 13px; }
 }
+/* com o seletor só ida / ida e volta, a busca fica mais alta: mais espaço abaixo dela */
+body:has(#modo:not([hidden])) main { padding-top: 110px; }
+@media (max-width: 960px) { body:has(#modo:not([hidden])) main { padding-top: 175px; } }
+@media (max-width: 640px) { body:has(#modo:not([hidden])) main { padding-top: 165px; } }

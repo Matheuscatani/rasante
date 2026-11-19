@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rasante · Passagens baratas saindo de Goiânia</title>
-<meta name="description" content="O menor preço de cada dia, de Goiânia para todo o Brasil, conferido de hora em hora em LATAM, GOL e Azul.">
+<meta name="description" content="O menor preço de cada dia, de Goiânia para todo o Brasil, conferido a cada 30 minutos em LATAM, GOL e Azul. Só ida ou ida e volta.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -73,9 +73,16 @@
   <div class="hero-in">
     <p class="hero-tag" id="atualizado">Preços conferidos hoje</p>
     <h1>Voe barato saindo de Goiânia</h1>
-    <p class="hero-sub">De hora em hora, conferimos LATAM, GOL e Azul para <b id="n-destinos">43 destinos</b> e mostramos quando a passagem está bem abaixo do preço normal.</p>
+    <p class="hero-sub">A cada 30 minutos, conferimos LATAM, GOL e Azul para <b id="n-destinos">43 destinos</b> e mostramos quando a passagem está bem abaixo do preço normal.</p>
   </div>
   <form class="busca" id="busca" role="search" onsubmit="return false">
+    <div class="modo" id="modo" hidden>
+      <div class="modo-tipo" role="group" aria-label="Tipo de passagem">
+        <button type="button" data-modo="ida" aria-pressed="true">Só ida</button>
+        <button type="button" data-modo="iv" aria-pressed="false">Ida e volta</button>
+      </div>
+      <div class="modo-dias" id="modo-dias" role="group" aria-label="Dias de viagem" hidden></div>
+    </div>
     <label class="campo">
       <span>Para onde?</span>
       <input id="f-texto" type="search" list="cidades" placeholder="Qualquer destino" autocomplete="off">
@@ -101,7 +108,7 @@
     <div class="bloco-cab">
       <div>
         <h2 id="promo-titulo">Muito abaixo do preço agora</h2>
-        <p>Passagens só de ida pelo menos <b id="regra">35%</b> mais baratas que o normal da rota.</p>
+        <p id="promo-sub">Passagens só de ida pelo menos <b id="regra">35%</b> mais baratas que o normal da rota.</p>
       </div>
     </div>
     <div class="promos" id="promos"></div>
@@ -131,7 +138,7 @@
       <article>
         <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13.5 21 6l-4.5 15-4-6.5L3 13.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
         <h3>Conferimos todas as companhias</h3>
-        <p>De hora em hora, a equipe lê o menor preço de cada dia dos próximos 6 meses, juntando LATAM, GOL, Azul e quem mais voa a rota.</p>
+        <p>A cada 30 minutos, a equipe lê o menor preço de cada dia dos próximos 6 meses, na ida e na volta, juntando LATAM, GOL, Azul e quem mais voa a rota.</p>
       </article>
       <article>
         <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
@@ -141,7 +148,7 @@
       <article>
         <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
         <h3>Avisamos por e-mail</h3>
-        <p>Quando o preço despenca, chega um e-mail às 8h, 13h ou 19h com o destino, a data e o link do voo. Cada passagem é avisada uma vez.</p>
+        <p>Quando o preço despenca, só ida ou ida e volta, chega um e-mail na hora com o destino, as datas e o link do voo. Cada passagem é avisada uma vez.</p>
       </article>
     </div>
   </section>
@@ -149,14 +156,14 @@
   <section class="alerta" id="alertas" aria-labelledby="alerta-titulo">
     <div>
       <h2 id="alerta-titulo">Passagem barata some rápido</h2>
-      <p>Os alertas por e-mail estão ligados: quando aparecer uma passagem muito abaixo do preço saindo de Goiânia, você fica sabendo no próximo e-mail, às 8h, 13h ou 19h. Aqui no painel o preço atualiza de hora em hora.</p>
+      <p>Os alertas por e-mail estão ligados: quando aparecer uma passagem muito abaixo do preço saindo de Goiânia, você recebe um e-mail logo depois da conferência. Aqui no painel o preço atualiza a cada 30 minutos.</p>
     </div>
     <svg class="alerta-arte" viewBox="0 0 200 120" aria-hidden="true"><path d="M10 100 C60 90 120 60 190 15" stroke="#fff" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round" fill="none" opacity=".7"/><g transform="translate(150 28) rotate(-28)"><path d="M-22 0h44l8-3-8-3h-44z" fill="#fff"/><path d="M-4-3 6-20h7L6-3zM-4 0 6 17h7L6 0zM-20-3l-5-9h5l7 9z" fill="#fff"/></g></svg>
   </section>
 </main>
 
 <footer class="rodape">
-  <p>Preços de passagem só de ida, 1 adulto, classe econômica, com taxas, no momento da coleta. Confira no site da companhia antes de pagar.</p>
+  <p>Preços para 1 adulto, classe econômica, com taxas, no momento da coleta. Ida e volta: a ida somada à volta mais barata nos dias escolhidos. Confira no site da companhia antes de pagar.</p>
   <p>Fotos: Wikimedia Commons.</p>
 </footer>
 
@@ -170,7 +177,8 @@
     <div class="meses" id="cal-meses" role="tablist" aria-label="Mês"></div>
     <div class="legenda"><span class="l-of">Muito abaixo</span><span class="l-ok">Abaixo do normal</span><span class="l-alto">Acima do normal</span></div>
     <div class="grade" id="cal-grade"></div>
-    <p class="cal-nota">Toque num dia para abrir o voo e ver as companhias.</p>
+    <div class="cal-par" id="cal-par" hidden></div>
+    <p class="cal-nota" id="cal-nota">Toque num dia para abrir o voo e ver as companhias.</p>
   </div>
 </dialog>
 
